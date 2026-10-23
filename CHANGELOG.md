@@ -1,3 +1,13 @@
+# Histórico de versões
+
+## 0.3.0
+- Refeita a aparência para disposição próxima ao Google Docs, conforme as referências visuais usadas também no design do Docses (projetos independentes).
+- Interface e miniaturas limpas: sem marca “c.”, sem marca d’água, sem múltiplos rótulos da marca.
+- Importador local de `.docx` com estilos de texto, tabelas e extração básica de imagens.
+- Salvar como em caminho selecionado com diálogo nativo macOS/Windows; fallback web quando disponível.
+- Cadeado vetorial aberto/fechado, magnetismo de 23px e linhas-guia temporárias horizontais, verticais e diagonais.
+- Ícone rosa com transparência, removida moldura branca.
+
 # Alterações
 
 ## 0.2.0 — 23/10/2026
