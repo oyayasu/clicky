@@ -1,0 +1,17 @@
+[package]
+name = "clicky"
+version = "0.2.0"
+description = "Clicky - editor de textos e roteiros"
+authors = ["Clicky Contributors"]
+license = "MIT"
+edition = "2021"
+
+[lib]
+name = "clicky_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }

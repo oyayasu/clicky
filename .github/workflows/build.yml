@@ -1,0 +1,51 @@
+name: Compilar Clicky - Windows e macOS
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  compilar:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            args: ''
+            nome: windows-x64
+          - os: macos-latest
+            args: '--target aarch64-apple-darwin'
+            nome: macos-apple-silicon
+          - os: macos-15-intel
+            args: '--target x86_64-apple-darwin'
+            nome: macos-intel
+    runs-on: ${{ matrix.os }}
+    env:
+      APPLE_SIGNING_IDENTITY: '-'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ startsWith(matrix.os, 'macos-') && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      - name: Instalar dependências
+        run: npm install
+      - name: Testar projeto
+        run: npm test
+      - name: Preparar ícones Clicky
+        run: npm run tauri -- icon src-tauri/icons/clicky-master.png
+      - name: Gerar instaladores nativos
+        uses: tauri-apps/tauri-action@v1
+        with:
+          args: ${{ matrix.args }}
+          uploadWorkflowArtifacts: true
+          workflowArtifactNamePattern: Clicky-${{ matrix.nome }}-[bundle]

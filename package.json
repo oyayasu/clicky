@@ -1,0 +1,16 @@
+{
+  "name": "clicky-editor",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "description": "Clicky – editor open source com biblioteca de documentos, guias e comentários",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.0.0"
+  }
+}
