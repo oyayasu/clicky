@@ -86,6 +86,7 @@
 .side-add{color:#5f6368;width:28px;height:28px;font-size:22px}
 .tab-list{padding:0 12px}.tab-item{border-radius:24px;margin-bottom:3px;min-height:40px;font-size:13px;font-weight:500}
 .tab-item.active{background:color-mix(in srgb,var(--accent) 10%,white)!important;color:var(--accent)!important}
+.tab-empty-hint{margin:10px 25px 4px 30px;color:#5f6368;font-size:12px;font-style:italic;line-height:2;max-width:185px;pointer-events:none}
 .sidebar .side-bottom{border-top:1px solid #eceff3}
 .main{background:#f8fafd}
 .stage-top{height:20px;padding:0 17px 0 11px;border:0;background:transparent}

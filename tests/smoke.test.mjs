@@ -61,3 +61,12 @@ test('New interface has no C. previews and the icon has alpha',()=>{
  const png=fs.readFileSync(new URL('../src-tauri/icons/clicky-master.png',import.meta.url));
  assert.equal(png.subarray(1,4).toString(),'PNG');
 });
+
+test('New documents start with only Guia 1 and contextual hint',()=>{
+ const app=fs.readFileSync(new URL('../src/app.js',import.meta.url),'utf8');
+ assert.match(app,/activeId:'guia-1',tabs:\[\{id:'guia-1',name:'Guia 1',html:'<p><\/p>',assets:\[\]\}\]/);
+ assert.doesNotMatch(app,/name:'Original',html:/);
+ assert.match(app,/if\(state\.tabs\.length===1\)\{const hint=document\.createElement\('p'\)/);
+ assert.match(app,/Os títulos que forem adicionados ao documento aparecerão aqui\./);
+ assert.match(app,/name:`Guia \${state\.tabs\.length\+1}`/);
+});
