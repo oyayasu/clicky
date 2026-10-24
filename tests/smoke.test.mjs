@@ -38,7 +38,7 @@ test('Storage has independent documents, folders and backup metadata',()=>{
  for(const store of ['document_index','documents','folders','revisions','preferences'])assert.match(storage,new RegExp(`['"]${store}['"]`));
  assert.match(storage,/initializeLibrary/);assert.match(storage,/loadDocument/);assert.match(storage,/deleteFolder/);
  const conf=JSON.parse(fs.readFileSync(new URL('../src-tauri/tauri.conf.json',import.meta.url),'utf8'));
- assert.equal(conf.version,'0.4.0');assert.equal(conf.app.security.csp['script-src'],"'self'");
+ assert.equal(conf.version,'0.5.0');assert.equal(conf.app.security.csp['script-src'],"'self'");
 });
 
 
@@ -69,7 +69,7 @@ test('New documents start with only Guia 1 and contextual hint',()=>{
  assert.doesNotMatch(app,/name:'Original',html:/);
  assert.match(app,/if\(state\.tabs\.length===1\)\{const hint=document\.createElement\('p'\)/);
  assert.match(app,/Os títulos que forem adicionados ao documento aparecerão aqui\./);
- assert.match(app,/name:`Guia \${state\.tabs\.length\+1}`/);
+ assert.match(app,/state\.tabs\.length\+1/);
 });
 
 
@@ -80,4 +80,14 @@ test('Reference geometry uses centered page and independent tabs sidebar',()=>{
  for(const id of ['zoomSelect','favoriteButton','cloudSaveBtn','moveToFolderBtn','revisionsTop','sidebarBack','proofTop','paintFormat','winMin','winMax','winClose'])assert.match(html,new RegExp(`id="${id}"`));
  const app=fs.readFileSync(new URL('../src/app.js',import.meta.url),'utf8');
  for(const name of ['initNativeWindowButtons','setPageZoom','beginFormatPainting','applyPaintedFormat'])assert.ok(app.includes(`function ${name}(`),name);
+});
+
+
+test('0.5 includes no browser dialogs, contextual navigation and local language control',()=>{
+ const app=fs.readFileSync(new URL('../src/app.js',import.meta.url),'utf8');
+ const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
+ for(const marker of ['function appDialog','function selectionIsBackward','function scheduleOutline','function applyInterfaceLanguage','function renderTabs','function askLink'])assert.ok(app.includes(marker),marker);
+ assert.doesNotMatch(app,/\b(?:window\.)?(?:alert|prompt|confirm)\s*\(/);
+ for(const id of ['homeWinMin','homeWinMax','homeWinClose','floatLookup','dialogShade','dialogInput'])assert.match(html,new RegExp(`id="${id}"`));
+ assert.doesNotMatch(html,/id="themeImport"|id="themePicture"/);
 });

@@ -29,3 +29,9 @@
 ## 0.1.0 — 23/10/2026
 
 - Primeira versão do editor com destaque por seleção, abas, fontes, anexos livres, temas e exportação.
+
+## 0.5.0
+- Navegação automática por títulos dentro de cada guia.
+- Destaque por direção da seleção e menu contextual estilo Kindle.
+- Notas como comentários, diálogos próprios, menu da biblioteca e controles de janela na tela inicial.
+- Temas apenas predefinidos e interface inglês/português nas áreas principais.

@@ -1,40 +1,42 @@
-# Clicky — Editor de documentos
+# Clicky — editor de textos open source
 
-Aplicativo desktop de edição local em desenvolvimento, inspirado na disposição do Google Docs, com identidade de cor rosa. Open source (MIT). Repositório exclusivo do Clicky; não modifica o projeto Docses.
+**v0.5.0** — Aplicativo local para Windows e macOS, feito com Tauri 2, com biblioteca de documentos, guias, outline por títulos, comentários, importação/exportação de DOCX, fontes e imagens.
 
-## O que funciona na versão 0.3.0
+## Iniciar em modo desenvolvimento
 
-- Biblioteca local com pastas coloridas, pesquisa, grade e lista, miniaturas de texto sem logotipos.
-- Cabeçalho, menus, régua, página A4 de 816 × 1056 CSS px e barra de formatação reorganizados para lembrar o Google Docs.
-- Guias independentes por documento, comentários ancorados com respostas e resolução, destaque automático tipo Kindle, editor rico, fontes locais/importadas, ortografia do WebView e dicionário pessoal.
-- Abrir arquivos `.docx` por **Arquivo > Abrir** ou pela tela inicial; o importador local extrai texto, estilos comuns, títulos, alinhamentos, tabelas e imagens PNG/JPEG/GIF/WebP quando reconhecidas. Importação é aproximada: **não preserva com fidelidade integral layouts complexos, caixas de texto, rodapés, imagens ancoradas ou numeração avançada**.
-- **Salvar como** em `.docx`, `.txt` ou `.clicky`, usando o seletor nativo de pasta/arquivo no Tauri. No navegador, usa `showSaveFilePicker` quando disponível; o fallback é o download padrão do navegador. `Ctrl/Cmd+S` abre Salvar como DOCX; `Ctrl/Cmd+Shift+S` salva backup `.clicky`.
-- Salvamento automático local em IndexedDB continua ativo para recuperação. Escolher um arquivo com Salvar como cria uma cópia no caminho desejado, mas **não sincroniza automaticamente futuras alterações ao mesmo arquivo externo**.
-- GIFs e imagens móveis, ícones vetoriais de cadeado aberto/fechado, magnetismo agressivo e guias horizontais e diagonais durante o arraste.
-- Ícone do aplicativo rosa com fundo transparente, sem azulejo branco ao redor.
-
-## Compilação
-
-Requer Node.js 22 e Rust/Tauri 2.
-
-```sh
+```bash
 npm install
-npm test
 npm run dev
+```
+
+## Testar e compilar
+
+```bash
+npm test
+npm run build
 npm run tauri build
 ```
 
-Para gerar instaladores para Windows x64, macOS Intel e macOS Apple Silicon sem instalar o SDK localmente, abra **GitHub > Actions > Compilar Clicky - Windows e macOS** e execute o workflow. Os artefatos `.exe`, `.msi`, `.dmg` estarão na execução concluída.
+Os executáveis também são compilados em `.github/workflows/build.yml` (GitHub Actions). Artifacts para Windows (`exe`/`msi`) e macOS (`dmg`) ficam disponíveis no workflow.
 
-## Restrições atuais
+## Mudanças da v0.5.0
 
-Não é uma cópia do motor de layout do Google Docs: alguns itens de menu e formatos avançados ainda não têm paridade funcional. DOCX é importação/exportação com perdas de layout; os comentários e anexos posicionados livremente são preservados de forma completa no backup `.clicky`, **não no DOCX**. Integração Google Drive e colaboração simultânea ainda não estão implementadas. Os instaladores não são assinados nem notarizados.
+- Seleção da esquerda para a direita: aplica destaque, se Grifo rápido estiver ativado. Da direita para a esquerda: remove destaque.
+- Botão direito no destaque: menu contextual com **Excluir, Destacar, Consultar, Comentar, Copiar**; a cor pode ser escolhida em uma paleta.
+- Notas são comentários. Os comentários são salvos na biblioteca local, não são colaboração em tempo real.
+- Outline dinâmico dentro da guia ativa: títulos de nível 1 a 6 aparecem sob a guia e permitem navegar no documento.
+- Caixa de confirmação, entrada de URL e renomeação agora usam diálogos próprios em vez de janelas de navegador.
+- Menu contextual da biblioteca oferece Abrir DOCX, Nova pasta e Novo documento.
+- Tela inicial mostra os controles de minimizar/maximizar/fechar no desktop.
+- Interface oferece Português e Inglês nas funções principais; partes secundárias ainda têm rótulos somente em português.
+- Temas continuam disponíveis como opções predefinidas; o editor, importação e exportação de temas personalizados foram removidos.
 
-O nome do aplicativo só é apresentado em janelas/sobre/documentação, evitando marcas d'água nas páginas ou miniaturas.
+**Limitações conhecidas:** A fidelidade DOCX não é integral (principalmente layouts complexos, flutuação de imagens e comentários). Documentos locais são salvos automaticamente com IndexedDB; use o backup `.clicky` para preservar a estrutura completa. As compilações do GitHub não substituem testes manuais de instalação e interação.
 
+## Referências de comportamento
 
-## Interface 0.4.0 — gabarito Google Docs
+- [Guias de documento](https://support.google.com/docs/answer/15499791?hl=pt-BR)
+- [Estrutura de tópicos](https://support.google.com/docs/answer/6367684?hl=pt-BR)
+- [Atalhos](https://support.google.com/docs/answer/179738?hl=pt-BR)
 
-O editor foi recalibrado para o gabarito visual de 1649 × 928 fornecido pelo autor do projeto: menus e ferramenta de formatação no topo, guia inicial à esquerda, régua sobre folha e página centrada no viewport independentemente da sidebar. Há alternância de zoom, preferências, comentário, salvamento e janela sem moldura nativa com controles de janela (Windows/macOS). A geometria corresponde ao tamanho da imagem de referência; proporções podem variar com escala de tela e fontes locais. Nenhum arquivo dos outros projetos foi modificado. Ao criar um documento novo, a fonte inicial é Arial 11.
-
-Importante: a aparência é inspirada na disposição do Google Docs, mas o Clicky é um produto independente, com armazenamento local; não oferece colaboração em tempo real nem promete equivalência de importação complexa do Word. Para proteger trabalhos, salve backups `.clicky`.
+Licença MIT. Clicky e Docses são projetos independentes.

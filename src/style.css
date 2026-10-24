@@ -219,3 +219,21 @@ body{margin:0}.app-shell{background:#f8fafd}
 .toolbar .tool-separator:first-of-type{display:none}
 .toolbar .paint-active{background:color-mix(in srgb,var(--accent) 20%,white);color:var(--accent)}
 @media(max-width:1100px){.page-stage{min-width:684px}}
+
+/* 0.5 – native-feeling dialogs, contextual Kindle menu, dynamic document outline */
+.document-outline{display:flex;flex-direction:column;gap:1px;margin:4px 8px 8px 13px;min-width:0}
+.outline-heading{display:block;width:100%;text-align:left;padding:5px 6px 5px calc(10px + (var(--outline-depth) * 12px));border-radius:6px;color:#505863;font-size:12.5px;line-height:1.5;white-space:normal;overflow-wrap:anywhere}
+.outline-heading:hover,.outline-heading:focus-visible{background:#e8eef9;color:var(--accent)}
+.tab-empty-hint{font-size:12px;line-height:1.8;font-style:italic;color:#69717d}
+.kindle-menu{display:flex;flex-direction:row;align-items:center;gap:0;min-width:338px;max-width:calc(100vw - 16px);padding:6px 8px;border-radius:17px;box-shadow:0 8px 26px #19203226;background:#fff;z-index:100;box-sizing:border-box}
+.kindle-menu.hidden{display:none!important}
+.kindle-menu button:not(.hidden){display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex:1;min-height:60px;padding:6px 7px;color:#222;font-size:11px;border-radius:10px;white-space:nowrap}
+.kindle-menu button:not(.hidden):hover{background:#f2f5fa}.kindle-menu .menu-symbol{display:flex;justify-content:center;align-items:center;min-height:27px;font-size:22px;font-weight:500}.kindle-color-dot{width:24px;height:24px;background:#ffdb75;border:1px solid #eda12d;border-radius:50%}
+.app-dialog{width:min(420px,calc(100vw - 34px));padding:23px;background:var(--panel);border-radius:15px;box-shadow:0 18px 80px #0003;color:var(--text)}
+.app-dialog h3{font-size:17px;font-weight:600;margin:0 0 14px}.app-dialog p{font-size:13px;line-height:1.65;white-space:pre-line}
+.app-dialog input{width:100%;margin:6px 0 20px;border:1px solid #cfd4df;border-radius:7px;background:var(--paper);padding:11px 12px;color:var(--text)}
+.dialog-buttons{display:flex;justify-content:flex-end;gap:10px}.dialog-buttons button{border:1px solid var(--border);border-radius:9px;padding:8px 16px}.dialog-buttons .primary{background:var(--accent);color:white}
+.dialog-buttons .danger-button{background:var(--accent);color:white}
+.library-view{padding-top:67px}.library-titlebar{display:none;position:absolute;left:0;right:0;top:0;height:35px;align-items:center;justify-content:space-between;padding:0 4px 0 14px;border-bottom:1px solid var(--border);background:#f8fafd;user-select:none}.library-window-name{display:flex;align-items:center;gap:9px;font-size:12px;color:#323841}
+.desktop-app .library-titlebar{display:flex}.library-window-buttons{position:relative;inset:auto;display:flex;align-items:stretch;height:35px}
+.library-window-buttons .window-btn{min-width:40px;height:35px}.library-window-buttons button svg{width:12px;height:12px}
