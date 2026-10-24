@@ -31,3 +31,10 @@ Para gerar instaladores para Windows x64, macOS Intel e macOS Apple Silicon sem 
 Não é uma cópia do motor de layout do Google Docs: alguns itens de menu e formatos avançados ainda não têm paridade funcional. DOCX é importação/exportação com perdas de layout; os comentários e anexos posicionados livremente são preservados de forma completa no backup `.clicky`, **não no DOCX**. Integração Google Drive e colaboração simultânea ainda não estão implementadas. Os instaladores não são assinados nem notarizados.
 
 O nome do aplicativo só é apresentado em janelas/sobre/documentação, evitando marcas d'água nas páginas ou miniaturas.
+
+
+## Interface 0.4.0 — gabarito Google Docs
+
+O editor foi recalibrado para o gabarito visual de 1649 × 928 fornecido pelo autor do projeto: menus e ferramenta de formatação no topo, guia inicial à esquerda, régua sobre folha e página centrada no viewport independentemente da sidebar. Há alternância de zoom, preferências, comentário, salvamento e janela sem moldura nativa com controles de janela (Windows/macOS). A geometria corresponde ao tamanho da imagem de referência; proporções podem variar com escala de tela e fontes locais. Nenhum arquivo dos outros projetos foi modificado. Ao criar um documento novo, a fonte inicial é Arial 11.
+
+Importante: a aparência é inspirada na disposição do Google Docs, mas o Clicky é um produto independente, com armazenamento local; não oferece colaboração em tempo real nem promete equivalência de importação complexa do Word. Para proteger trabalhos, salve backups `.clicky`.

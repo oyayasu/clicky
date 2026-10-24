@@ -38,7 +38,7 @@ test('Storage has independent documents, folders and backup metadata',()=>{
  for(const store of ['document_index','documents','folders','revisions','preferences'])assert.match(storage,new RegExp(`['"]${store}['"]`));
  assert.match(storage,/initializeLibrary/);assert.match(storage,/loadDocument/);assert.match(storage,/deleteFolder/);
  const conf=JSON.parse(fs.readFileSync(new URL('../src-tauri/tauri.conf.json',import.meta.url),'utf8'));
- assert.equal(conf.version,'0.3.0');assert.equal(conf.app.security.csp['script-src'],"'self'");
+ assert.equal(conf.version,'0.4.0');assert.equal(conf.app.security.csp['script-src'],"'self'");
 });
 
 
@@ -62,6 +62,7 @@ test('New interface has no C. previews and the icon has alpha',()=>{
  assert.equal(png.subarray(1,4).toString(),'PNG');
 });
 
+
 test('New documents start with only Guia 1 and contextual hint',()=>{
  const app=fs.readFileSync(new URL('../src/app.js',import.meta.url),'utf8');
  assert.match(app,/activeId:'guia-1',tabs:\[\{id:'guia-1',name:'Guia 1',html:'<p><\/p>',assets:\[\]\}\]/);
@@ -69,4 +70,14 @@ test('New documents start with only Guia 1 and contextual hint',()=>{
  assert.match(app,/if\(state\.tabs\.length===1\)\{const hint=document\.createElement\('p'\)/);
  assert.match(app,/Os títulos que forem adicionados ao documento aparecerão aqui\./);
  assert.match(app,/name:`Guia \${state\.tabs\.length\+1}`/);
+});
+
+
+test('Reference geometry uses centered page and independent tabs sidebar',()=>{
+ const css=fs.readFileSync(new URL('../src/style.css',import.meta.url),'utf8');
+ const html=fs.readFileSync(new URL('../index.html',import.meta.url),'utf8');
+ for(const field of ['--accent:#c02950','.page-stage{min-width:684px','.page-ruler{width:684px;left:calc(50% - 16px)','.paper{width:684px;left:-16px','.editor{padding:82px 82px 82px','.sidebar{width:263px!important'])assert.ok(css.includes(field),field);
+ for(const id of ['zoomSelect','favoriteButton','cloudSaveBtn','moveToFolderBtn','revisionsTop','sidebarBack','proofTop','paintFormat','winMin','winMax','winClose'])assert.match(html,new RegExp(`id="${id}"`));
+ const app=fs.readFileSync(new URL('../src/app.js',import.meta.url),'utf8');
+ for(const name of ['initNativeWindowButtons','setPageZoom','beginFormatPainting','applyPaintedFormat'])assert.ok(app.includes(`function ${name}(`),name);
 });

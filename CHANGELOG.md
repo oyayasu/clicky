@@ -1,3 +1,10 @@
+## 0.4.0 (2026-10-23)
+- Reprodução geométrica da interface de referência: topo, menu, toolbar, régua, página central e guias alinhados.
+- Janela desktop sem a barra de título adicional; comandos nativos de minimizar, maximizar, mover e fechar.
+- Documentos novos em Arial 11 e com `Guia 1` vazia; dica de guias mantida.
+- Botões reais de histórico, favoritos, pastas, ortografia, zoom, pintura e recuo.
+- Preservação dos dados anteriores; não modifica o Docses.
+
 # Histórico de versões
 
 ## 0.3.0
